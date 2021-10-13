@@ -1,0 +1,6 @@
+@import '../../App.css';
+
+.Public {
+    color: var(--base);
+    padding: 1rem 1.5rem;
+}

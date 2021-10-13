@@ -1,0 +1,44 @@
+@import '../../App.css';
+
+.Button {
+    min-height: 44px;
+    min-width: 100px;
+    border: 1px solid var(--primary);
+    background-color: var(--primary);
+    color: var(--base);
+    font-weight: bold;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 2px 4px;
+}
+
+.Button___warning {
+    color: var(--base);
+    border: 1px solid var(--warning);
+    background-color: var(--warning);
+}
+.Button___danger {
+    color: var(--white);
+    border: 1px solid var(--danger);
+    background-color: var(--danger);
+}
+.Button___secondary {
+    color: var(--base);
+    border: 1px solid var(--secondary);
+    background-color: var(--secondary);
+}
+
+.Button:hover {
+    filter: opacity(86%);
+}
+
+.Button:active,
+.Button:focus {
+    filter: saturate(150%);
+}
+
+.Button:disabled {
+    filter: grayscale(1);
+    color: var(--base);
+    cursor: not-allowed;
+}

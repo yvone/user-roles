@@ -1,0 +1,6 @@
+@import '../../App.css';
+
+.Protected {
+    color: var(--base);
+    padding: 1rem 1.5rem;
+}

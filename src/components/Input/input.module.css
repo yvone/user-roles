@@ -1,0 +1,22 @@
+@import '../../App.css';
+
+.InputWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 4px 2px 8px;
+}
+
+.Input {
+    border: 1px solid var(--base);
+    border-radius: 4px;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    padding: 2px 6px;
+}
+
+.Label {
+    font-size: 12px;
+    margin: 2px;
+}
