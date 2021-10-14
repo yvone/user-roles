@@ -12,15 +12,12 @@ function Button({
         switch(variant) {
             case 'secondary': {
                 return styles.Button___secondary;
-                break;
             }
             case 'danger': {
                 return styles.Button___danger;
-                break;
             }
             case 'warning': {
                 return styles.Button___warning;
-                break;
             }
             default: {
                 return '';

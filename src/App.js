@@ -1,60 +1,99 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
-import { NavLink } from 'react-router-dom';
-import { Button } from './components';
+import {
+  Route,
+  Switch,
+  Redirect,
+} from 'react-router-dom';
+import {
+  RegisterForm,
+  ProtectedPage,
+  PublicPage,
+  Dashboard,
+} from './components';
+import { useAuth } from './auth-context';
+
+/**
+ * Meant to guard the route
+ * if the user is authenticated
+ *  go on with the route
+ * else
+ *  redirect to login
+ */
+function ProtectedRoute(props) {
+  const { getToken } = useAuth();
+  const token = getToken();
+
+  return (
+    <>
+      {token ? (
+        <Route {...props} />
+      ) : <Redirect to="/login" /> }
+    </>
+  );
+}
+
+/**
+ * Meant to avoid unusual behavior with /login & /register
+ * if the user is already authenticated
+ *  cannot login twice!!!
+ * else
+ *  go on with the route
+ */
+function CustomRoute(props) {
+  const { getToken } = useAuth();
+  const token = getToken();
+
+  return (
+    <>
+      {token ? (
+        <Redirect to="/home" />
+      ) : <Route {...props} />}
+    </>
+  );
+}
+
 
 function App(props) {
   return (
-    <div className="App">
-      <header className="AppHeader">
-        <div className="AppHeader_home">
-          <img src={logo} className="Logo" alt="logo" />
-          <p>Hello <code>username</code></p>
-        </div>
-
-        <nav>
-          <NavLink
-            className="Link"
-            activeClassName="Link___selected"
-            to="/home"
-          >
-            Home
-          </NavLink>
-          <NavLink
-            className="Link"
-            activeClassName="Link___selected"
-            to="/protected"
-          >
-            Protected
-          </NavLink>
-          <NavLink
-            className="Link"
-            activeClassName="Link___selected"
-            to="/public"
-          >
-            Public
-          </NavLink>
-        </nav>
-
-        <div className="AppHeader_actions">
-          <Button variant="danger">
-            Logout
-          </Button>
-          <Button
-            onClick={() => props.history.push('/login')}
-          >
-            Login
-          </Button>
-          <Button
-            variant="secondary"
-            onClick={() => props.history.push('/register')}
-          >
-            Register
-          </Button>
-        </div>
-      </header>
+    <div>
+      <Route
+        path="/"
+        component={Dashboard}
+      />
+      <Switch>
+        <Route
+          exact
+          path="/home"
+          render={() => (
+            <div style={{padding: '2rem'}}>
+              <h1>Welcome to this App</h1>
+            </div>
+          )}
+        />
+        <CustomRoute
+          exact
+          path="/register"
+          component={RegisterForm}
+        />
+        <CustomRoute
+          exact
+          path="/login"
+          component={RegisterForm}
+        />
+        <ProtectedRoute
+          exact
+          path="/protected"
+          component={ProtectedPage}
+        />
+        <Route
+          exact
+          path="/public"
+          component={PublicPage}
+        />
+      </Switch>
     </div>
-  );
+  )
 }
 
 export default App;
