@@ -1,0 +1,51 @@
+@import '../../App.css';
+
+.Dashboard {
+    color: var(--base);
+    padding: 1rem 1.5rem;
+    margin-top: 6rem;
+}
+  
+.Header {
+    background-color: var(--base);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+}
+  
+.Header_home {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex: 2;
+}
+  
+.Header_actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    flex: 1;
+}
+  
+.Logo {
+    height: 44px;
+    pointer-events: none;
+}
+  
+.Link {
+    color: var(--secondary);
+    margin: 8px;
+}
+  
+.Link___selected {
+    filter: saturate(600%);
+}
